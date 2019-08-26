@@ -1,14 +1,14 @@
-#DUPLA: FRANCISCO ALISSON E FRANCISCO REGINALDO
+#DUPLA ALISSON COSTA 
 
 
 ############## ARMAZENAMENTO DE DADOS - INICIO ################
-C = input('Digite a FunÁ„o Objetivo na forma vetorial [X1 X2 ... XN]: ');#ENTRADA 'funÁ„o objetivo'
+C = input('Digite a Fun√ß√£o Objetivo na forma vetorial [X1 X2 ... XN]: ');#ENTRADA 'fun√ß√£o objetivo'
 disp('');
-m = input('Digite a quantidade de restriÁıes: '); #ENTRADA 'quantidade restriÁıes'
+m = input('Digite a quantidade de restri√ß√µes: '); #ENTRADA 'quantidade restri√ß√µes'
 
 for i= 1:m
-    Ab(i,:)=[input('Digite a restriÁ„o na forma vetorial: ')]; #ARMAZENA AS restriÁıes JUNTAMENTE 
-                                                               #COM OS 'termos apÛs a igualdade'
+    Ab(i,:)=[input('Digite a restri√ß√£o na forma vetorial: ')]; #ARMAZENA AS restri√ß√µes JUNTAMENTE 
+                                                               #COM OS 'termos ap√≥s a igualdade'
 end
 
 nAb = size(Ab, 2); #QUANTIDADE DE COLUNAS DE Ab
@@ -21,37 +21,37 @@ end
 b = Ab(:, nAb); #ARMAZENA A MATRIZ 'b' 
 
 n = size(A,2); #QUANTIDADE DE COLUNAS DE 'A'
-varIndep = n - m; #QUANTIDADE DE VARI¡VEIS INDEPENDENTES QUE PODEM SER FIXADAS COMO ZERO
+varIndep = n - m; #QUANTIDADE DE VARI√ÅVEIS INDEPENDENTES QUE PODEM SER FIXADAS COMO ZERO
 
 k=0;    
 for j=1:n 
     k = k+1;
-    indiceVar(1, j) = k;#ATRIBUI 'Ìndices' A TODAS AS 'colunas (vari·veis)'
+    indiceVar(1, j) = k;#ATRIBUI '√≠ndices' A TODAS AS 'colunas (vari√°veis)'
 end  
 
-Xb = zeros(1,n-varIndep);#INICIALIZANDO AS 'vari·veis b·sicas' COM 'zero'
+Xb = zeros(1,n-varIndep);#INICIALIZANDO AS 'vari√°veis b√°sicas' COM 'zero'
 ############# ARMAZENAMENTO DE DADOS - FIM #################
  
 
-#INÕCIO DO SIMPLEX
+#IN√çCIO DO SIMPLEX
 g = 1;
 contAux = 1; 
 while g==1
   p = 1;
     while p==1   
-        if contAux==1#VERIFICA SE os Ìndices B e N 
+        if contAux==1#VERIFICA SE os √≠ndices B e N 
             if isempty(find(Xb<0))# VERICA SE TODOS OS ELEMENTOS 
-                                  # DE 'Xb' S√O POSITIVOS (FACTIBILIDADE)
+                                  # DE 'Xb' S√ÉO POSITIVOS (FACTIBILIDADE)
                                   
-                indN = indiceVar(1:varIndep);#DEFINE OS 'Ìndices das vari·veis b·sicas'
-                                             #PARTI«√O N√O B¡SICA
+                indN = indiceVar(1:varIndep);#DEFINE OS '√≠ndices das vari√°veis b√°sicas'
+                                             #PARTI√á√ÉO N√ÉO B√ÅSICA
                                              
-                indB = indiceVar(varIndep+1:n);#DEFINE OS 'Ìndices das vari·veis n„o b·sicas'
-                                               #PARTI«√O B¡SICA
+                indB = indiceVar(varIndep+1:n);#DEFINE OS '√≠ndices das vari√°veis n√£o b√°sicas'
+                                               #PARTI√á√ÉO B√ÅSICA
                 
-            else #CASO Xb 'n„o seja factÌvel'
-                indN = indiceVar(n-varIndep+1:n); #DEFINE 'novos Ìndices das vari·veis b·sicas'
-                indB = indiceVar(1:n-varIndep);   #DEFINE 'novos Ìndices das vari·veis n„o b·sicas'                
+            else #CASO Xb 'n√£o seja fact√≠vel'
+                indN = indiceVar(n-varIndep+1:n); #DEFINE 'novos √≠ndices das vari√°veis b√°sicas'
+                indB = indiceVar(1:n-varIndep);   #DEFINE 'novos √≠ndices das vari√°veis n√£o b√°sicas'                
             end  
         end 
         
@@ -60,18 +60,18 @@ while g==1
             
         
        Xb=inv(B)*b;   
-       if isempty(find(Xb<0)) #VERIFICA A 'factibilidade' DA SOLU«√O B¡SICA     
+       if isempty(find(Xb<0)) #VERIFICA A 'factibilidade' DA SOLU√á√ÉO B√ÅSICA     
            p=0;
        end    
     endwhile
 
-    Cb = C(indB);#'funÁ„o objetivo' ESCRITA NOS    
-                 #'Ìndices das vari·veis b·sicas'
+    Cb = C(indB);#'fun√ß√£o objetivo' ESCRITA NOS    
+                 #'√≠ndices das vari√°veis b√°sicas'
                  
-    Cn = C(indN);#'funÁ„o objetivo' ESCRITA NOS 
-                 #'Ìndices das vari·veis n„o b·sicas'
+    Cn = C(indN);#'fun√ß√£o objetivo' ESCRITA NOS 
+                 #'√≠ndices das vari√°veis n√£o b√°sicas'
 
-    mSimplex =  Cb*inv(B); #'Multiplicador Simplex': NECESS¡RIO PARA
+    mSimplex =  Cb*inv(B); #'Multiplicador Simplex': NECESS√ÅRIO PARA
                            # CALCULAR OS 'Custos Reduzidos'
     
     
@@ -84,30 +84,30 @@ while g==1
         q++;     
     endwhile
     
-    [menorCR, indK] = min(cRed);# ARMAZENA O 'menor custo reduzido' COM SEU 'Ìndice'
-                                # DETERMINA«√O DO ÕNDICE A ENTRAR NA BASE  
+    [menorCR, indK] = min(cRed);# ARMAZENA O 'menor custo reduzido' COM SEU '√≠ndice'
+                                # DETERMINA√á√ÉO DO √çNDICE A ENTRAR NA BASE  
                                 
-    entraNaBase =  indN(1,indK);# ÕNDICE QUE VAI ENTRAR NA 'base'
+    entraNaBase =  indN(1,indK);# √çNDICE QUE VAI ENTRAR NA 'base'
     
-    y = inv(B)*N(:,indK);#  DIRE«√O SIMPLEX
+    y = inv(B)*N(:,indK);#  DIRE√á√ÉO SIMPLEX
     
     if isempty(find(y>0))#  VERIFICA SE TODOS O ELEMENTOS 
-                         #  DA 'DireÁ„o Simplex' S√O NEGATIVOS (SOLU«√O ILIMITADA)
+                         #  DA 'Dire√ß√£o Simplex' S√ÉO NEGATIVOS (SOLU√á√ÉO ILIMITADA)
           disp('-------------------------------------------------------------------------');
-          disp("A SOLU«√O ”TIMA … ILIMITADA COM A FUN«√O CUSTO AUMENTANDO PARA O INFINITO");
+          disp("A SOLU√á√ÉO √ìTIMA √â ILIMITADA COM A FUN√á√ÉO CUSTO AUMENTANDO PARA O INFINITO");
           disp('-------------------------------------------------------------------------');
           break;
     end
     
     if isempty(find(cRed<0))# VERIFICA SE TODOS OS ELEMENTOS
-                            # DO 'Custo Reduzido' S√O POSITIVOS (SOLU«√O ”TIMA) 
+                            # DO 'Custo Reduzido' S√ÉO POSITIVOS (SOLU√á√ÉO √ìTIMA) 
         g=0;
-        z = Cb*Xb; # CUSTO ”TIMO
+        z = Cb*Xb; # CUSTO √ìTIMO
         xSol = zeros(1, n);
-        xSol(indB) = Xb; #SOLU«√O ”TIMA
+        xSol(indB) = Xb; #SOLU√á√ÉO √ìTIMA
         disp('');
         disp('-------------------------------');
-        disp('         SOLU«√O ”TIMA:        '); 
+        disp('         SOLU√á√ÉO √ìTIMA:        '); 
         disp('-------------------------------');
         for j=1:n
            teste =[ "=> x", num2str(indiceVar(1,j)), ' = ',num2str(xSol(1, j))]; 
@@ -122,27 +122,27 @@ while g==1
     else    
         h = 0;  
         for i=1:m      
-            if y(i,1)>0 #ELEMENTOS DA 'DireÁ„o Simplex' MAIORES DO QUE ZERO (POSITIVOS)
+            if y(i,1)>0 #ELEMENTOS DA 'Dire√ß√£o Simplex' MAIORES DO QUE ZERO (POSITIVOS)
                 h=h+1;
-                auxTP = Xb(i,1)/y(i,1);#DIVIS√O DE ELEMENTOS DA 'SoluÁ„o B·sica'
-                                       #POR ELEMENTOS DA 'DireÁ„o Simplex'
+                auxTP = Xb(i,1)/y(i,1);#DIVIS√ÉO DE ELEMENTOS DA 'Solu√ß√£o B√°sica'
+                                       #POR ELEMENTOS DA 'Dire√ß√£o Simplex'
                                        
-                TP(1, h) = auxTP;      #ARMAZENANDO RESULTADOS DA DIVIS√O ANTERIOS NO VETOR
+                TP(1, h) = auxTP;      #ARMAZENANDO RESULTADOS DA DIVIS√ÉO ANTERIOS NO VETOR
                 auxTP = [];          
             end
         end
         e = min(TP);      #TAMANHO DO PASSO
         
-        x(indB) = Xb-y*e; #DETERMINA, ATRAV…S DA 'DireÁ„o Simplex E 'Tamanho do Passo',
-                          #VARI¡VEL B¡SICA QUE … ANULADA PARA A ESCOLHA DO 'Ìndice da vari·vel b·sica'
-                          #QUE SAIR¡ DA BASE.
+        x(indB) = Xb-y*e; #DETERMINA, ATRAV√âS DA 'Dire√ß√£o Simplex E 'Tamanho do Passo',
+                          #VARI√ÅVEL B√ÅSICA QUE √â ANULADA PARA A ESCOLHA DO '√≠ndice da vari√°vel b√°sica'
+                          #QUE SAIR√Å DA BASE.
         #  x[indB] = [0 2 0 0 0]                
         
         indL= find(x(indB)==0, 1, "last"); #INDICE DO ELEMENTO A SAIR DA BASE
-        saiDaBase = indB(1,indL);          #ELEMENTO QUE SAI DA PARTI«√O B¡SICA  
+        saiDaBase = indB(1,indL);          #ELEMENTO QUE SAI DA PARTI√á√ÉO B√ÅSICA  
         
-        indB(1, indL) = entraNaBase;#NOVA PARTI«√O B¡SICA
-        indN(1, indK) =  saiDaBase; #NOVA PARTI«√O N√O B¡SICA   
+        indB(1, indL) = entraNaBase;#NOVA PARTI√á√ÉO B√ÅSICA
+        indN(1, indK) =  saiDaBase; #NOVA PARTI√á√ÉO N√ÉO B√ÅSICA   
         
     end
     contAux = contAux+1;
